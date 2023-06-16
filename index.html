@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academlo Store...</title>
+    <link rel="icon" href="assets/img/img/logo blanco.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!--? FONTS  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script defer src="https://app.embed.im/snow.js"></script>
+</head>
+<body>
+    <!--? NAV  -->
+    <nav class="nav">
+        <img src="assets/img/img/logo_nombre.png" alt="logo_nombre" class="nav__img">
+        <button class="nav__buttom nav__buttom--toggle">
+            <i class="fa-solid fa-cart-plus fa-bounce" style="color: #eb4a5a;"></i>
+            <span id="totalPrice"></span>
+        </button>
+        <section class="nav__car " id="car">
+            <div class="car__footer">
+                <p id="total" class="total__text"></p>
+                <div id="empty-car-container">
+                    <button id="empty-car" class="empty__button empty__button--hide">
+                        Empty Car
+                    </button>
+                </div>
+            </div>
+            <div id="car__list">
+
+            </div>
+        </section>
+    </nav>
+    <!--? HEADER -->
+    <header class="header">
+        <img src="assets/img/img/logo blanco.png" alt="logo_header" class="header__img">
+        <h2 class="header__h2">Academlo Store...<span>&#160;</span></h2>
+    </header>
+    <!--? MAIN -->
+    <main class="main">
+        <h3 class="main__h3">Todos nuestros productos</h3>
+        <!--? lista de productos -->
+        <section id="products-container" class="main__products products">
+            
+
+        </section>
+        <section class="modal" id="modal-container">
+            <div class="close">
+                <i class="fa-solid fa-x"></i>
+            </div>
+            <div>
+                
+            </div>
+        </section>
+    </main>
+    <!--? FOOTER -->
+    <footer>
+
+    </footer>
+    <!--? SCRIPTS  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/a34aa65076.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
