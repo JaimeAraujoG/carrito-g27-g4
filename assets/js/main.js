@@ -13,6 +13,8 @@ const carList = document.querySelector("#car__list");
 const emptyCarButton = document.querySelector("#empty-car");
 //* Total
 const totalElement = document.querySelector("#total");
+const modalContainer = document.querySelector("#modal-container");
+const modalElement = document.querySelector("#modal-element");
 
 //* Array carrito
 let carProducts = [];
@@ -30,6 +32,8 @@ function eventListenerLoader() {
   carList.addEventListener("click", deleteProduct);
   //* Cuando se haga clic en el botón "Empty"
   emptyCarButton.addEventListener("click", emptyCar);
+  productsList.addEventListener("click", modalProduct);
+  modalContainer.addEventListener("click", closeModal);
 }
 
 //* Hacer petición a la API de productos
@@ -63,8 +67,8 @@ function printProducts(products) {
               <button data-id="${product.id}" class="products__button add_car">
                   Add to car
               </button>
-              <button class="button_details">
-              Deltails
+              <button data-id="${product.id}" data-description="${product.description}" class="products__button products__details">
+              Details
               </button>
           </div>
       </div>
@@ -229,5 +233,54 @@ function toggleEmptyButton() {
     emptyCarButton.classList.remove("hidden");
   }
 }
+//* Ventana Modal
+//* 1. Crear función que escuche el botón del producto.
+function modalProduct(event) {    
+  // if(event.target.classList.contains("products__button__view")){
+  if(event.target.classList.contains("products__details")){
 
+      modalContainer.classList.add("show__modal")
+      const product = event.target.parentElement.parentElement.parentElement.parentElement
+      modalDetailsElement(product)
+  }
+}
+//* 2. Crear función que escuche el botón de cierre.
+function closeModal(event) {
+  if(event.target.classList.contains("modal__icon")){
+    console.log('CERRAR MODAL');
+      modalContainer.classList.remove("show__modal")
+      document.getElementById("modal-container").style.display = "none";
+  }
+}
+//* 3. Crear función que convierta la info HTML en objeto.
+function modalDetailsElement(product) {
+  const infoDatails = {
+      id: product.querySelector('button').getAttribute('data-id'),
+      image: product.querySelector('img').src,
+      name: product.querySelector('p').textContent,
+      price: product.querySelector('.products__div .products__price').textContent,
+      description: product.querySelector('.products__details').getAttribute('data-description')
+  }
+  var modalDetails = []
+  modalDetails = [ ...modalDetails, infoDatails ]
+  modalHTML(modalDetails)
+}
+//* 4. Dibujar producto dentro del modal.
+function modalHTML(modalDetails) {
 
+  console.log('EL MODAL DETAILS ES'+ modalDetails);
+    let detailsHTML = ""
+    for( let element of modalDetails ) {
+      console.log('EL ELEMENTO DETAILS ES'+ element.description);
+
+        detailsHTML =
+         `
+            <div>
+            <img src="${element.image}">
+            <h2>${element.description}</h2>
+            </div>
+        `
+    }
+    modalElement.innerHTML = detailsHTML;
+    document.getElementById("modal-container").style.display = "flex";
+}
